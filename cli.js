@@ -22,8 +22,8 @@ else{timezone = moment.tz.guess();}
 
 let latitude, longitude = 0; 
 
-if(arg.n){ latidue = arg.n;}
-else if(arg.s){ latidue = -1 * arg.s;}
+if(arg.n){ latitude = arg.n;}
+else if(arg.s){ latitude = -1 * arg.s;}
 else{console.log("Latitude must be in range"); process.exit(0);}
 
 if(arg.e){longitude = arg.e;}
