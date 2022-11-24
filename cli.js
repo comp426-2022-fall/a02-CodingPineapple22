@@ -17,20 +17,20 @@ if(arg.h){
 	process.exit(0); 
 }
 
-if(arg.z){timezone = arg.z;}
+if(arg.z != null){timezone = arg.z;}
 else{timezone = moment.tz.guess();}
 
 let latitude, longitude, days = 0; 
 
-if(arg.n){ latitude = arg.n;}
+if(arg.n != null){ latitude = arg.n;}
 else if(arg.s){ latitude = -1 * arg.s;}
 else{console.log("Latitude must be in range"); process.exit(0);}
 
-if(arg.e){longitude = arg.e;}
+if(arg.e != null){longitude = arg.e;}
 else if(arg.w){longitude = -1 * arg.w;} 
 else{console.log("Longitude must be in range"); process.exit(0);}
 
-if(arg.d){days = arg.d;}
+if(arg.d != null){days = arg.d;}
 else{days = 1;} 
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + 
 	latitude + '&longitude=' + longitude + 
@@ -40,11 +40,10 @@ const responseToJSON = await response.json();
 if(arg.j){console.log(responseToJSON); process.exit(0); }
  
 
-if(responseToJSON.daily.precipitation_hours[days] != 0){ console.log("You might need your galoshes ");} 
-else{ console.log("You will not need your galoshes ");}
+if(responseToJSON.daily.precipitation_hours[days] == 0){ console.log("You will not need your galoshes ");} 
+else{ console.log("You might need your galoshes ");}
 
 if(days ==0){console.log("today. ");}
-else if(days ==1 ){console.log("tomorrow. ");}
-else{console.log("in " + days + " days."); } 
+else if(days >1){console.log("in " +days+ " days.");}
+else{console.log("tomorrow."); } 
 
-process.exit(0);
