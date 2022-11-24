@@ -20,7 +20,7 @@ if(arg.h){
 if(arg.z){timezone = arg.z;}
 else{timezone = moment.tz.guess();}
 
-let latitude, longitude = 0; 
+let latitude, longitude, days = 0; 
 
 if(arg.n){ latitude = arg.n;}
 else if(arg.s){ latitude = -1 * arg.s;}
@@ -30,14 +30,15 @@ if(arg.e){longitude = arg.e;}
 else if(arg.w){longitude = -1 * arg.w;} 
 else{console.log("Longitude must be in range"); process.exit(0);}
 
+if(arg.d){days = arg.d;}
+else{days = 1;} 
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + 
 	latitude + '&longitude=' + longitude + 
 	'&daily=precipitation_hours&timezone=' + timezone); 
 const responseToJSON = await response.json();
 
 if(arg.j){console.log(responseToJSON); process.exit(0); }
-
-const days = arg.d; 
+ 
 
 if(responseToJSON.daily.precipitation_hours[days] != 0){ console.log("You might need your galoshes ");} 
 else{ console.log("You will not need your galoshes ");}
