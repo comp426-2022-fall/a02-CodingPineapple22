@@ -42,7 +42,7 @@ const days = arg.d;
 if(responseToJSON.daily.precipitation_hours[days] != 0){ console.log("You might need your galoshes");} 
 else{ console.log("You will not need your galoshes");}
 
-if(days ==0){cosole.log(" today.");}
+if(days ==0){console.log(" today.");}
 else if(days ==1 ){console.log(" tomorrow.");}
 else{console.log(" in " + days + " days."); } 
 
